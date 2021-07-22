@@ -1,0 +1,85 @@
+<form class="my-form">
+  <div class="container">
+    <h1>Tabla de registro de casos de pruebas</h1>
+    <ul>
+      <li>
+        <div class="grid grid-3">
+          <input type="text" [(ngModel)]="art.entrada" name="entrada" placeholder="Entrada"/>
+        </div> 
+      </li>    
+      <li>
+        <div class="grid grid-3">
+          <input type="text" [(ngModel)]="art.tipop" name="tipop" placeholder="Tipo de Prueba"/>
+        </div>
+      </li>    
+      <li>
+        <div class="grid grid-3">
+          <input type="text" [(ngModel)]="art.salidae" name="salidae" placeholder="Salida esperadas" />
+        </div>
+      </li>    
+      <li>
+        <textarea [(ngModel)]="art.descripcion" name="descripcion" placeholder="Escribe aquí la descripcion..."></textarea>
+      </li> 
+      <li>
+        <textarea [(ngModel)]="art.riesgos" name="Riesgos" placeholder="Escribe aquí los Riesgos ..."></textarea>
+      </li>   
+      <li>
+        <div class="grid grid-3">
+          <button class="btn-grid">
+            <span (click)="modificacion()" class="front">Modificar</span>
+          </button>
+          <button (click)="generatePdf()" class="btn-grid">
+            <span class="front">Open PDF</span>
+          </button>
+        </div>
+      </li>
+    </ul>
+  </div>
+</form>
+
+<div>
+<h1> Tabla de registro de casos de pruebas</h1>
+        <table id="contentToConvert" border="1">
+            <tr>
+              <td>Id</td><td>Entradas</td><td>Tipo de prueba</td><td>Salidas esperadas</td><td>Descripcion</td><td>Version</td><td>Riesgos</td>
+            </tr>
+            <tr *ngFor="let art of articulos">
+              <td>{{art.identidicador}}</td>
+              <td>{{art.entrada}}</td>
+              <td>{{art.tipop}}</td> 
+              <td>{{art.salidae}}</td>   
+              <td>{{art.descripcion}}</td>
+              <td>{{art.version}}</td>
+              <td>{{art.riesgos}}</td>        
+            </tr>
+          </table>
+          <br>
+          <br>
+          <input type="text" [(ngModel)]="art.idSE" name="idSE" placeholder=" ingrese Id de Dato a Selecionar o Eliminar"/>
+          <button (click)="baja(art.idSE)">Borrar?</button>
+          <button (click)="seleccionar(art.idSE)">Seleccionar</button>  
+          <br>
+          <br>
+          <br>
+          <br>
+          <div>
+            <a [routerLink]="['/Versiones']"> <button class="btn btn-info"> Buscar Versiones </button></a>
+          </div>
+            
+          <br>
+          <br>
+          <br>
+<br>
+      <a routerLink ="/PlantillaPruebas">Ir a Registro de pruebas</a>
+      <br>
+      <br>
+
+      <form enctype="multipart/form-data" action="guardar_archivo.php" method="post">
+        Descripción <input type="text" name="titulo" size="30">
+        Ubicación <input type="file" name="archivito">
+        <input type="submit" value="Enviar archivo">
+        </form>
+      
+   
+      
+</div>
